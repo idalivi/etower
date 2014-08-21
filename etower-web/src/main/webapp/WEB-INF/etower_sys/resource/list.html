@@ -1,0 +1,42 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_add.do" class="add fb"><em><@s.m "global.add"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<div class="J_tablelist table_list">
+		<form id="tableForm" method="post">
+			<@p.tabletree value=list;resource,i,has_next><#rt/>
+				<@p.column title="<input type='checkbox' name='checkall' class='J_checkall' />" width="40" align="center">
+					<input type='checkbox' name='ids' class='J_checkitem' value='${resource.id}'/><#t/>
+				</@p.column><#t/>
+				<@p.column title="ID" width="40" align="center">${resource.id}</@p.column><#t/>
+				<@p.column code="resource.name">${resource.resouName}</@p.column><#t/>
+				<@p.column code="resource.priority" align="center">${resource.priority}</@p.column><#t/>
+				<@p.column code="global.operate" width="160" align="center">
+					<a href="v_add.do?id=${resource.id}">添加子分类</a> | <#rt/>
+					<a href="v_edit.do?id=${resource.id}"><@s.m "global.edit"/></a> | <#rt/>
+					<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${resource.id}" data-msg="<@s.m "global.confirm.delete.one.1"/>${resource.resouName}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
+				</@p.column><#t/>
+			</@p.tabletree>
+		</form>
+		<div class="btn_wrap_fixed">
+			<label class="select_all"><input type="checkbox" name="checkall" class="J_checkall">全选/取消</label>
+		    <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="o_delete.do" data-name="ids" data-msg="<@s.m "global.confirm.delete"/>" value="<@s.m "global.delete"/>" />
+			<div id="pages"></div>
+		</div>
+	</div>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script src="${base}/res/common/js/jquery/plugins/jquery.treetable.js"></script>
+<script>
+$(function(){
+    //initialState:'expanded'
+    $("#J_cate_tree").treeTable({indent:20,treeColumn:2});
+});        
+</script>
+</body>
+</html>

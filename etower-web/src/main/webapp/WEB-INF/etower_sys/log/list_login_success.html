@@ -1,0 +1,48 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<a href="v_list_operating.do" class=""><em><@s.m "log.menu.operating"/></em></a>
+   		<span>|</span>
+   		<a href="v_list_login_success.do" class="on"><em><@s.m "log.menu.success"/></em></a>
+   		<span>|</span>
+   		<a href="v_list_login_failure.do" class=""><em><@s.m "log.menu.failure"/></em></a>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<form action="v_list_login_success.do" method="post" >
+    <table width="100%" cellspacing="0" class="search_form">
+        <tbody>
+            <tr>
+                <td>
+                <div class="explain_col">
+                    <@s.m "log.title"/>: <input type="text" name="search_EQ_title" class="input-text" size="15" value="${search_EQ_title!}" />&nbsp;&nbsp;
+					<@s.m "log.ip"/>: <input type="text" name="search_EQ_ip" class="input-text" size="15" value="${search_EQ_ip!}" />
+                    <input type="submit" name="search" class="btn" value="<@s.m "global.query"/>" />
+                </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+	<div class="J_tablelist table_list">
+		<form id="tableForm" method="post">
+			<input type="hidden" name="pageNo" value="${pageNo!}"/>
+			<@p.table value=pagination listAction="v_list_login_success.do";etLog,i,has_next><#rt/>
+				<@p.column title="<input type='checkbox' name='checkall' class='J_checkall' />" width="40" align="center">
+					<input type='checkbox' name='ids' class='J_checkitem' value='${etLog.id}'/><#t/>
+				</@p.column><#t/>
+				<@p.column title="ID" align="center">${etLog.id}</@p.column><#t/>
+				<@p.column code="log.userName" align="center">${etLog.etUser.userName}</@p.column><#t/>
+				<@p.column code="log.logTime" align="center">${etLog.logTime?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
+				<@p.column code="log.ip" align="center">${etLog.ip}</@p.column><#t/>
+				<@p.column code="log.title" align="center">${etLog.title}</@p.column><#t/>
+				<@p.column code="global.operate" align="center">
+					<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${etLog.id}&pageNo=${pageNo!}" data-msg="<@s.m "global.confirm.delete.one.1"/>${etLog.title}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
+				</@p.column><#t/>
+			</@p.table>
+		</form>
+	</div>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

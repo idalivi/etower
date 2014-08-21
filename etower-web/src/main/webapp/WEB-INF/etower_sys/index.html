@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="off">
+<head>
+	<meta charset="utf-8" />
+	<title>ETOWER Administrator's Control Panel</title>
+	<link href="${base}/res/etower/css/admin.css" rel="stylesheet" />
+</head>
+<body scroll="no">
+<div id="header">
+	<div class="logo"><a href="#" title=""></a></div>
+    <div class="fr">
+    	<div class="cut_line admin_info tr">
+    		<form action="index.do" target="_top" method="get">
+				<select name="${siteParam}" onchange="this.form.submit();">
+				  <#list siteList as s>
+	              <option value="${s.id}"<#if s.id==site.id> selected="selected"</#if>>${s.siteName}</option>
+	              </#list>
+	            </select>
+            </form>
+            <span class="cut">|</span>
+    		<a href="/" target="_blank"><@s.m "global.admin.home"/></a>
+			<span class="cut">|</span>
+			<span><@s.ma code="global.admin.welcome" args=[user.userName]/></span>
+			<span class="cut">|</span>
+			<a href="logout.do?returnUrl=index.do" target="_top" id="logout" onclick="return confirm('<@s.m "global.confirm.logout"/>');"><@s.m "global.admin.logout"/></a>
+        </div>
+    </div>
+    <ul class="nav white" id="J_tmenu">
+        <li class="top_menu"><a href="javascript:;" data-id="-1" hidefocus="true" style="outline:none;"><@s.m "main.function.console" /></a></li>
+    	<#list topMenu as m>
+		<li class="top_menu"><a href="javascript:;" data-id="${m.id}" hidefocus="true" style="outline:none;">${m.resouName}</a></li>
+        </#list>
+    </ul>
+</div>
+<div id="content">
+	<div class="left_menu fl">
+    	<div id="J_lmenu" class="J_lmenu" data-uri="left.do"></div>
+        <a href="javascript:;" id="J_lmoc" style="outline-style: none; outline-color: invert; outline-width: medium;" hidefocus="true" class="open" title="<@s.m "main.function.openORclose"/>"></a>
+    </div>
+    <div class="right_main">
+    	<div class="crumbs">
+        	<div class="options">
+				<a href="javascript:;" title="<@s.m "main.function.refresh"/>" id="J_refresh" class="refresh" hidefocus="true"><@s.m "main.function.refresh"/></a>
+            	<a href="javascript:;" title="<@s.m "main.function.fullScreen"/>" id="J_full_screen" class="admin_full" hidefocus="true"><@s.m "main.function.fullScreen"/></a>
+                <a href="javascript:;" title="<@s.m "main.function.flushCache"/>" id="J_flush_cache" class="flush_cache" data-uri="{:U('cache/qclear')}" hidefocus="true"><@s.m "main.function.flushCache"/></a>
+            	<a href="javascript:;" title="<@s.m "main.function.adminMap"/>" id="J_admin_map" class="admin_map" data-uri="right.do" hidefocus="true"><@s.m "main.function.adminMap"/></a>
+			</div>
+    		<div id="J_mtab" class="mtab">
+            	<a href="javascript:;" id="J_prev" class="mtab_pre fl" title="<@s.m "main.function.tabPre"/>"><@s.m "main.function.tabPre"/></a>
+                <a href="javascript:;" id="J_next" class="mtab_next fr" title="<@s.m "main.function.tabNext"/>"><@s.m "main.function.tabNext"/></a>
+                <div class="mtab_p">
+                    <div class="mtab_b">
+                        <ul id="J_mtab_h" class="mtab_h"><li class="current" data-id="0"><span><a><@s.m "main.function.adminHome"/></a></span></li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	<div id="J_rframe" class="rframe_b">
+        	<iframe id="rframe_0" src="right.do" frameborder="0" scrolling="auto" style="height:100%;width:100%;"></iframe>
+        </div>
+    </div>
+</div>
+<script src="${base}/res/common/js/jquery/jquery.js"></script>
+<script src="${base}/res/etower/js/etower.js"></script>
+<script>
+//初始化弹窗
+(function (d) {
+    d['okValue'] = lang.dialog_ok;
+    d['cancelValue'] = lang.dialog_cancel;
+    d['title'] = lang.dialog_title;
+})($.dialog.defaults);
+</script>
+<script src="${base}/res/etower/js/index.js"></script>
+</body>
+</html>

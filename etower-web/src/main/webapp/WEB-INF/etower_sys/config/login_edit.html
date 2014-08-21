@@ -1,0 +1,22 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<a href="v_system_edit.do" class=""><em><@s.m "config.menu.system"/></em></a>
+   		<span>|</span>
+   		<a href="v_login_edit.do" class="on"><em><@s.m "config.menu.login"/></em></a>
+   		<span>|</span>
+   		<a href="v_member_edit.do" class=""><em><@s.m "config.menu.member"/></em></a>
+   		<span>|</span>
+   		<a href="v_mark_edit.do" class=""><em><@s.m "config.menu.mark"/></em></a>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_login_update.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="10" label="config.configLogin.errorTimes" name="errorTimes" value=configLogin.errorTimes required="true" maxlength="50" help="config.configLogin.errorTimes.help"/>
+		<@p.text width="100" class="input-text" size="10" label="config.configLogin.errorInterval" name="errorInterval" value=configLogin.errorInterval required="true" maxlength="50" help="config.configLogin.errorInterval.help"/>
+		<th></th><@p.td><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

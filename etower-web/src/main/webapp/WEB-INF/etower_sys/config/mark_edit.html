@@ -1,0 +1,61 @@
+<#include "/etower_sys/head.html"/>
+<script type="text/javascript">
+function preview() {
+	var img = $('#markImage').val();
+	if(img!="") {
+		$('#markPreview').attr('src','${base}'+img);
+	} else {
+		$('#markPreview').removeAttr('src');
+	}
+}
+</script>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<a href="v_system_edit.do" class=""><em><@s.m "config.menu.system"/></em></a>
+   		<span>|</span>
+   		<a href="v_login_edit.do" class=""><em><@s.m "config.menu.login"/></em></a>
+   		<span>|</span>
+   		<a href="v_member_edit.do" class=""><em><@s.m "config.menu.member"/></em></a>
+   		<span>|</span>
+   		<a href="v_mark_edit.do" class="on"><em><@s.m "config.menu.mark"/></em></a>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_mark_update.do" labelWidth="12">
+		<@p.radio width="100" label="config.markConfig.markOn" name="markOn" value=markConfig.markOn list={"true":"global.true","false":"global.false"}/>
+		<@p.td label="config.markConfig.control" help="config.markConfig.control.help">
+		<@s.m "config.markConfig.minWidth"/>: <input type="text" class="input-text" name="markWidth" value="${markConfig.markWidth}" style="width:70px" class="required" maxlength="5"/>
+		&nbsp; <@s.m "config.markConfig.minHeight"/>: <input type="text" class="input-text" name="markHeight" value="${markConfig.markHeight}" style="width:70px" class="required" maxlength="5"/>
+		</@p.td><@p.tr/>
+		<@p.td label="config.markConfig.markImage" help="config.markConfig.markImage.help">
+		<@p.text width="100" class="input-text" id="markImage" name="markImage" value=markConfig.markImage style="width:200px" maxlength="100"/>
+		<input class="btn" type="button" value="<@s.m "imageupload.preview"/>" onclick="preview();"/>
+		<img id="markPreview" style="border:1px solid #ccc;vertical-align:middle" alt="<@s.m "imageupload.preview"/>"<#if markConfig.markImage??> src="${base+markConfig.markImage}"</#if>/>
+		</@p.td><@p.tr/>
+		<@p.text width="100" class="input-text" size="30" label="config.markConfig.markContent" name="markContent" value=markConfig.markContent required="true" maxlength="50" help="config.markConfig.markContent.help"/>
+		<@p.td label="config.markConfig.textAttr">
+		<@s.m "config.markConfig.markSize"/>: <@p.text name="markSize" value=markConfig.markSize style="width:70px" class="input-text" maxlength="5"/>
+		&nbsp; <@s.m "config.markConfig.markColor"/>: <@p.text id="markColor" name="markColor" value=markConfig.markColor style="width:70px; color:${markConfig.markColor}" class="input-text" maxlength="7"/>
+		<input type="hidden" value="" name="color" id="J_color">
+		<a href="javascript:;" class="color_picker_btn"><img class="J_color_picker" data-it="markColor" data-ic="J_color" src="${base}/res/etower/img/admin/color.png"></a>
+		&nbsp; <@s.m "config.markConfig.markAlpha"/>: <@p.text name="markAlpha" value=markConfig.markAlpha style="width:70px" class="input-text" maxlength="3" help="config.markConfig.markAlpha.help"/>
+		</@p.td><@p.tr/>
+		<@p.td label="config.markConfig.markPosition">
+		<@p.select name="markPosition" value=markConfig.markPosition list={"0":"config.markConfig.markPosition.random","1":"config.markConfig.markPosition.leftTop","2":"config.markConfig.markPosition.rightTop","3":"config.markConfig.markPosition.leftBottom","4":"config.markConfig.markPosition.rightBottom","5":"config.markConfig.markPosition.center"}/>
+		&nbsp; <@s.m "config.markConfig.markOffsetX"/>: <input type="text" name="markOffsetX" value="${markConfig.markOffsetX}" class="input-text" maxlength="5" style="width:70px"/>
+		&nbsp; <@s.m "config.markConfig.markOffsetY"/>: <input type="text" name="markOffsetY" value="${markConfig.markOffsetY}" class="input-text" maxlength="5" style="width:70px"/>
+		</@p.td><@p.tr/>
+		<th></th><@p.td><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script src="${base}/res/common/js/jquery/plugins/listTable.js"></script>
+<script src="${base}/res/common/js/jquery/plugins/colorpicker.js"></script>
+<script>
+$(function() {
+	//颜色选择器
+	$('.J_color_picker').colorpicker();	
+});
+</script>
+</body>
+</html>

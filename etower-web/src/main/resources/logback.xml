@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>E:/et-logs/etower.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>5</MaxHistory>
+		</rollingPolicy>
+
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<!--日志异步到数据库 -->
+	<!-- <appender name="DB" class="ch.qos.logback.classic.db.DBAppender"> -->
+		<!--日志异步到数据库 -->
+		<!-- <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource"> -->
+			<!--连接池 -->
+			<!-- <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<driverClass>com.mysql.jdbc.Driver</driverClass>
+				<jdbcUrl>jdbc:mysql://192.168.113.128:3306/etower</jdbcUrl>
+				<user>root</user>
+				<password>root</password>
+			</dataSource>
+		</connectionSource>
+	</appender> -->
+
+	<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+		<smtpHost>smtp.gmail.com</smtpHost>
+		<smtpPort>465</smtpPort>
+		<SSL>true</SSL>
+		<username>idalivi@gmail.com</username>
+		<password>lidawei1019</password>
+
+		<to>dalishu@hotmail.com</to>
+		<to>lidw@ulane.cn</to> <!-- additional destinations are possible -->
+		<from>idalivi@gmail.com</from>
+		<subject>TESTING: %logger{20} - %m</subject>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{35} - %message%n</pattern>
+		</layout>
+	</appender>
+
+
+	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+	<!-- <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" /> -->
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG" />
+	<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG" />
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
+	<logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
+
+	<root>
+		<!-- static Level DEBUG
+		DEBUG Level指出细粒度信息事件对调试应用程序是非常有帮助的。
+		
+		static Level INFO
+		INFO level表明 消息在粗粒度级别上突出强调应用程序的运行过程。
+		
+		static Level WARN
+		WARN level表明会出现潜在错误的情形。
+		
+		static Level ERROR
+		ERROR level指出虽然发生错误事件，但仍然不影响系统的继续运行。
+		
+		static Level FATAL
+		FATAL level指出每个严重的错误事件将会导致应用程序的退出。
+		
+		另外，还有两个可用的特别的日志记录级别: (以下描述来自log4j API http://jakarta.apache.org/log4j/docs/api/index.html):
+		static Level ALL
+		ALL Level是最低等级的，用于打开所有日志记录。
+		
+		static Level OFF
+		OFF Level是最高等级的，用于关闭所有日志记录。
+		
+		优先级从高到低分别是 ERROR、WARN、INFO、DEBUG。通过在这里定义的级别，您可以控制到应用程序中相应级别的日志信息的开关。
+		比如在这里定义了INFO级别，则应用程序中所有DEBUG级别的日志信息将不被打印出来。程序会打印高于或等于所设置级别的日志，设置的日志等级越高，打印出来的日志就越少。
+		如果设置级别为INFO，则优先级高于等于INFO级别（如：INFO、 WARN、ERROR）的日志信息将可以被输出,小于该级别的如DEBUG将不会被输出。-->
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+		<!-- <appender-ref ref="EMAIL" /> -->
+		<!-- <appender-ref ref="DB" /> -->
+	</root>
+
+</configuration>

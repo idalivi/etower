@@ -1,0 +1,48 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_add.do" class="add fb"><em><@s.m "global.add"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<div class="J_tablelist table_list">
+		<form id="tableForm" method="post">
+			<@p.table value=list;model,i,has_next><#rt/>
+				<@p.column title="<input type='checkbox' name='checkall' class='J_checkall' />" width="40" align="center">
+					<input type='checkbox' name='ids' class='J_checkitem' value='${model.id}'/><#t/>
+				</@p.column><#t/>
+				<@p.column title="ID" align="center">${model.id}</@p.column><#t/>
+				<@p.column code="model.name" align="center">${model.modelName}</@p.column><#t/>
+				<@p.column code="model.tplChannelPrefix" align="center">${model.tplChannelPrefix}</@p.column><#t/>
+				<@p.column code="model.tplContentPrefix" align="center">${model.tplContentPrefix}</@p.column><#t/>
+				<@p.column code="model.priority" align="center">
+					<input type="text" name="priority" class="input-text" value="${model.priority}" style="width:40px"/>
+					<input type="hidden" name="wids" value="${model.id}"/>
+				</@p.column><#t/>
+				<@p.column code="model.def" align="center">
+					<input type="radio" name="defId" value="${model.id}"<#if model.isDef> checked="checked"</#if>/>
+				</@p.column><#t/>
+				<@p.column code="model.disabled" align="center">
+					<input type="checkbox" onclick="$('#disabled${i}').val(!this.checked)"<#if !model.isDisabled> checked="checked"</#if>/>
+					<input type="hidden" id="disabled${i}" name="disabled" value="${model.isDisabled?string('true','false')}"/>
+				</@p.column><#t/>
+				<@p.column code="global.operate" align="center">
+					<a href="v_edit.do?id=${model.id}"><@s.m "global.edit"/></a> | <#rt/>
+					<a href="../item/v_list.do?modelId=${model.id}&isChannel=true"><@s.m "model.modelChannel"/></a> | <#rt/>
+					<a<#if model.hasContent> href="../item/v_list.do?modelId=${model.id}&isChannel=false"<#else> disabled="disabled" class="a_disabled"</#if>><@s.m "model.modelContent"/></a> | <#rt/>
+					<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${model.id}" data-msg="<@s.m "global.confirm.delete.one.1"/>${model.modelName}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
+				</@p.column><#t/>
+			</@p.table>
+		</form>
+		<div class="btn_wrap_fixed">
+			<label class="select_all"><input type="checkbox" name="checkall" class="J_checkall">全选/取消</label>
+		    <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="o_delete.do" data-name="ids" data-msg="<@s.m "global.confirm.delete"/>" value="<@s.m "global.delete"/>" />
+			<div id="pages"></div>
+		</div>
+	</div>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

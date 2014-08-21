@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-lazy-init="true">
+	
+	<!--HttpSession-->
+	<bean id="sessionProvider" class="org.etower.common.web.session.HttpSessionProvider"/>
+	
+	<!--密码加密器-->
+	<bean id="pwdEncoder" class="org.etower.common.security.encoder.Md5PwdEncoder"/>
+	
+	<!--执行时间标签-->
+	<bean id="uuid" class="org.etower.common.web.freemarker.UUIDDirective"/>
+	<bean id="process_time" class="org.etower.common.web.freemarker.ProcessTimeDirective"/>
+	<bean id="text_cut" class="org.etower.common.web.freemarker.TextCutDirective"/>
+	<bean id="html_cut" class="org.etower.common.web.freemarker.HtmlCutDirective"/>
+	
+	<bean id="realPathResolver" class="org.etower.common.web.springmvc.ServletContextRealPathResolver"/>
+	<bean id="fileRepository" class="org.etower.common.upload.FileRepository"/>
+	<!--文件模板-->
+	<bean id="tplManager" class="org.etower.core.tpl.FileTplManagerImpl"/>
+	
+</beans>

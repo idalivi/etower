@@ -1,0 +1,33 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_save.do" labelWidth="12">
+		<@p.td width="100" label="resource.parent"><#if parent??>${parent.resouName}<#else><@s.m "resource.top"/></#if></@p.td><@p.tr/>
+		<@p.text width="100" class="input-text" size="30" label="resource.name" name="resouName" id="J_resouName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="resource.modlename" name="modleName" id="J_modleName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="resource.actionname" name="actionName" id="J_actionName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="resource.paramdata" name="paramData" id="J_paramData" maxlength="100"/>
+		<@p.textarea width="100" label="resource.remark" name="remark" id="J_remark" cols="40" rows="3" maxlength="255"/>
+		<@p.text width="100" class="input-text" size="20" label="resource.priority" name="priority" id="J_priority" value="10" maxlength="10"/>
+		<@p.radio width="100" label="resource.isdisplay" name="isDisplay" value="false" list={"true":"global.true","false":"global.false"}/>
+		<th></th><@p.td><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script type="text/javascript">
+$(function() {
+	$.formValidator.initConfig({formid:"jvForm",autotip:true});
+	$("#J_resouName").formValidator({onshow:'请填写资源名称',onfocus:'请填写资源名称'}).inputValidator({min:1,onerror:'请填写资源名称'});
+	$("#J_modleName").formValidator({onshow:'请填写模块名',onfocus:'请填写模块名'}).inputValidator({min:1,onerror:'请填写模块名'});
+	$("#J_actionName").formValidator({onshow:'请填写方法名',onfocus:'请填写方法名'}).inputValidator({min:1,onerror:'请填写资源名称'});
+	$("#J_priority").formValidator({onshow:'请填写优先级',onfocus:'请填写优先级'}).inputValidator({min:1,onerror:'请填写优先级'});
+});
+</script>
+</body>
+</html>

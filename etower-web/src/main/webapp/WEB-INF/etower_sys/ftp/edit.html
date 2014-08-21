@@ -1,0 +1,25 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="30" label="ftp.ftpName" name="ftpName" value=ftp.ftpName required="true" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.ip" name="ip" value=ftp.ip required="true" maxlength="50"/>
+		<@p.text width="100" class="input-text" size="20" label="ftp.port" name="port" value=ftp.port required="true" maxlength="10" help="ftp.port.help"/>
+		<@p.text width="100" class="input-text" size="20" label="ftp.timeOut" name="timeOut" value=ftp.timeOut required="true" maxlength="10" help="ftp.timeOut.help"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.userName" name="userName" value=ftp.userName required="true" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.password" name="password" value=ftp.password required="true" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.ftpPath" name="ftpPath" value=ftp.ftpPath maxlength="255" help="ftp.ftpPath.help"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.encoding" name="encoding" value=ftp.encoding required="true" maxlength="255"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.url" name="url" value=ftp.url required="true" maxlength="255" help="ftp.url.help"/>
+		<th></th><@p.td><@p.hidden name="id" value=ftp.id/><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

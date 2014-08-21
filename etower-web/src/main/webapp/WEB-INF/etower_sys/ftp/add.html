@@ -1,0 +1,35 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_save.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="30" label="ftp.ftpName" name="ftpName" id="J_ftpName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.ip" name="ip" id="J_ip" maxlength="50"/>
+		<@p.text width="100" class="input-text" size="20" label="ftp.port" name="port" id="J_port" value="21" maxlength="10" help="ftp.port.help"/>
+		<@p.text width="100" class="input-text" size="20" label="ftp.timeOut" name="timeOut" value="0" maxlength="10" help="ftp.timeOut.help"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.userName" name="userName" id="J_userName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.password" name="password" id="J_password" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.ftpPath" name="ftpPath" maxlength="255" help="ftp.ftpPath.help"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.encoding" name="encoding" value="UTF-8" maxlength="255"/>
+		<@p.text width="100" class="input-text" size="30" label="ftp.url" name="url" id="J_url" maxlength="255" help="ftp.url.help"/>
+		<th></th><@p.td><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script type="text/javascript">
+$(function() {
+	$.formValidator.initConfig({formid:"jvForm",autotip:true});
+	$("#J_ftpName").formValidator({onshow:'请填写FTP名称',onfocus:'请填写FTP名称'}).inputValidator({min:1,onerror:'请填写FTP名称'});
+	$("#J_ip").formValidator({onshow:'请填写服务器IP',onfocus:'请填写服务器IP'}).inputValidator({min:1,onerror:'请填写服务器IP'});
+	$("#J_userName").formValidator({onshow:'请填写FTP用户名',onfocus:'请填写FTP用户名'}).inputValidator({min:1,onerror:'请填写FTP用户名'});
+	$("#J_password").formValidator({onshow:'请填写FTP密码',onfocus:'请填写FTP密码'}).inputValidator({min:1,onerror:'请填写FTP密码'});
+	$("#J_url").formValidator({onshow:'请填写访问该FTP的URL地址',onfocus:'请填写访问该FTP的URL地址'}).inputValidator({min:1,onerror:'请填写访问该FTP的URL地址'});
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_add.do" class="add fb"><em><@s.m "global.add"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<div class="J_tablelist table_list">
+		<form id="tableForm" method="post">
+			<@p.table value=list;etSite,i,has_next><#rt/>
+				<@p.column title="<input type='checkbox' name='checkall' class='J_checkall' />" width="40" align="center">
+					<input type='checkbox' name='ids' class='J_checkitem' value='${etSite.id}'/><#t/>
+				</@p.column><#t/>
+				<@p.column title="ID" align="center">${etSite.id}</@p.column><#t/>
+				<@p.column code="site.domain" align="center">${etSite.domain}</@p.column><#t/>
+				<@p.column code="site.siteName" align="center">${etSite.siteName}</@p.column><#t/>
+				<@p.column code="site.sitePath" align="center">${etSite.sitePath}</@p.column><#t/>
+				<@p.column code="site.dynamicSuffix" align="center">${etSite.dynamicSuffix}</@p.column><#t/>
+				<@p.column code="site.staticSuffix" align="center">${etSite.staticSuffix}</@p.column><#t/>
+				<@p.column code="site.localeFront" align="center">${etSite.localeFront}</@p.column><#t/>
+				<@p.column code="global.operate" align="center">
+					<a href="v_edit.do?id=${etSite.id}"><@s.m "global.edit"/></a> | <#rt/>
+					<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${etSite.id}" data-msg="<@s.m "global.confirm.delete.one.1"/>${etSite.siteName}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
+				</@p.column><#t/>
+			</@p.table>
+		</form>
+		<div class="btn_wrap_fixed">
+			<label class="select_all"><input type="checkbox" name="checkall" class="J_checkall">全选/取消</label>
+		    <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="o_delete.do" data-name="ids" data-msg="<@s.m "global.confirm.delete"/>" value="<@s.m "global.delete"/>" />
+			<div id="pages"></div>
+		</div>
+	</div>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

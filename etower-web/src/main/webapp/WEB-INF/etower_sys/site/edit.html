@@ -1,0 +1,48 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.siteName" name="siteName" value=site.siteName id="J_siteName" maxlength="100"/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.shortName" name="shortName" value=site.shortName id="J_shortName" maxlength="100"/><@p.tr/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.domain" name="domain" value=site.domain id="J_domain" maxlength="50"/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.sitePath" name="sitePath" value=site.sitePath id="J_sitePath" maxlength="50"/><@p.tr/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.domainAlias" name="domainAlias" value=site.domainAlias id="J_domainAlias" maxlength="255" help="site.domainAlias.help"/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.domainRedirect" name="domainRedirect" value=site.domainRedirect id="J_domainRedirect" maxlength="255" help="site.domainRedirect.help"/><@p.tr/>
+		<@p.radio colspan="1" width="50" label="site.isRelativePath" name="isRelativePath" id="J_isRelativePath" value="false" list={"true":"global.true","false":"global.false"} help="site.isRelativePath.help"/>
+		<@p.select colspan="1" width="50" label="site.protocol" name="protocol" id="J_protocol" value=site.protocol list=["http://","https://"]/><@p.tr/>
+		<@p.select colspan="1" width="50" label="site.dynamicSuffix" name="dynamicSuffix" id="J_dynamicSuffix" value=site.dynamicSuffix list=[".ehtml",".htm"] help="site.dynamicSuffix.help"/>
+		<@p.select colspan="1" width="50" label="site.staticSuffix" name="staticSuffix" id="J_staticSuffix" value=site.staticSuffix list=[".html",".shtml"]/><@p.tr/>
+		<@p.td colspan="1" width="50" label="site.staticDir">
+		<@p.text name="staticDir" value=site.staticDir maxlength="50" class="input-text"/>
+		<label><input type="checkbox" onclick="$('#isIndexToRoot').val(this.checked)"<#if site.isIndexToRoot> checked="checked"</#if>/><input type="hidden" id="J_isIndexToRoot" name="isIndexToRoot" value="${site.isIndexToRoot?string('true','false')}"/><@s.m "site.isIndexToRoot"/></label>
+		</@p.td>
+		<@p.radio colspan="1" width="50" label="site.isStaticIndex" name="isStaticIndex" id="J_isStaticIndex" value=site.isStaticIndex list={"true":"global.true","false":"global.false"}/><@p.tr/>
+		<@p.select colspan="1" width="50" label="site.localeAdmin" name="localeAdmin" id="J_localeAdmin" value=site.localeAdmin list=["zh_CN"]/>
+		<@p.select colspan="1" width="50" label="site.localeFront" name="localeFront" id="J_localeFront" value=site.localeFront list=["zh_CN"]/><@p.tr/>
+		<@p.td colspan="1" width="50" label="site.ftp.upload">
+		<@p.select name="ftpId" id="J_ftpId" list=ftpList value=(site.ftp.id)! listKey="id" listValue="ftpName" headerKey="" headerValue="global.none"/>
+		</@p.td>
+		<@p.radio colspan="1" width="50" label="site.isRecycleOn" name="isRecycleOn" id="J_isRecycleOn" value=site.isRecycleOn list={"true":"global.true","false":"global.false"}/><@p.tr/>
+		<@p.text colspan="1" width="50" class="input-text" size="30" label="site.finalStep" name="finalStep" id="J_finalStep" value=site.finalStep maxlength="4"/>
+		<@p.select colspan="1" width="50" label="site.afterCheck" name="afterCheck" id="J_afterCheck" value=site.afterCheck list={"1":"site.afterCheck.1","2":"site.afterCheck.2","3":"site.afterCheck.3"}/><@p.tr/>
+		<th></th><@p.td colspan="2"><@p.hidden name="id" value=site.id/><@p.hidden name="tplSolution" value=site.tplSolution/><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script type="text/javascript">
+$(function() {
+	$.formValidator.initConfig({formid:"jvForm",autotip:true});
+	$("#J_siteName").formValidator({onshow:'请填写站点名称',onfocus:'请填写站点名称'}).inputValidator({min:1,onerror:'请填写站点名称'});
+	$("#J_shortName").formValidator({onshow:'请填写站点简称',onfocus:'请填写站点简称'}).inputValidator({min:1,onerror:'请填写站点简称'});
+	$("#J_domain").formValidator({onshow:'请填写站点域名',onfocus:'请填写站点域名'}).inputValidator({min:1,onerror:'请填写站点域名'});
+	$("#J_sitePath").formValidator({onshow:'请填写站点路径',onfocus:'请填写站点路径'}).inputValidator({min:1,onerror:'请填写站点路径'});
+});
+</script>
+</body>
+</html>

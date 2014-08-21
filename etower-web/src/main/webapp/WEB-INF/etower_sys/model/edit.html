@@ -1,0 +1,39 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="30" label="model.name" name="modelName" value=model.modelName id="J_modelName" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="model.path" name="modelPath" value=model.modelPath id="J_modelPath" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="model.tplChannelPrefix" name="tplChannelPrefix" value=model.tplChannelPrefix id="J_tplChannelPrefix" maxlength="20"/>
+		<@p.text width="100" class="input-text" size="30" label="model.tplContentPrefix" name="tplContentPrefix" value=model.tplContentPrefix id="J_tplContentPrefix" maxlength="20"/>
+		<@p.td width="100" label="model.titleImg">
+		<@s.m "global.width"/>: <input type="text" name="titleImgWidth" class="input-text" value="${model.titleImgWidth}" style="width:50px"/>
+		<@s.m "global.height"/>: <input type="text" name="titleImgHeight" class="input-text" value="${model.titleImgHeight}" style="width:50px"/>
+		</@p.td><@p.tr/>
+		<@p.td width="100" label="model.contentImg">
+		<@s.m "global.width"/>: <input type="text" name="contentImgWidth" class="input-text" value="${model.contentImgWidth}" style="width:50px"/>
+		<@s.m "global.height"/>: <input type="text" name="contentImgHeight" class="input-text" value="${model.contentImgHeight}" style="width:50px"/>
+		</@p.td><@p.tr/>
+		<@p.text width="100" class="input-text" size="30" label="model.priority" name="priority" value=model.priority id="J_priority" maxlength="9"/>
+		<@p.radio width="100" label="model.hasContent" name="hasContent" value=model.hasContent list={"true":"global.true","false":"global.false"}/>
+		<th></th><@p.td><@p.hidden name="id" value=model.id/><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script type="text/javascript">
+$(function() {
+	$.formValidator.initConfig({formid:"jvForm",autotip:true});
+	$("#J_modelName").formValidator({onshow:'请填写模型名称',onfocus:'请填写模型名称'}).inputValidator({min:1,onerror:'请填写模型名称'});
+	$("#J_modelPath").formValidator({onshow:'请填写模型路径',onfocus:'请填写模型路径'}).inputValidator({min:1,onerror:'请填写模型路径'});
+	$("#J_tplChannelPrefix").formValidator({onshow:'请填写栏目模板前缀',onfocus:'请填写栏目模板前缀'}).inputValidator({min:1,onerror:'请填写栏目模板前缀'});
+	$("#J_priority").formValidator({onshow:'请填写排列顺序',onfocus:'请填写排列顺序'}).inputValidator({min:1,onerror:'请填写排列顺序'});
+});
+</script>
+</body>
+</html>

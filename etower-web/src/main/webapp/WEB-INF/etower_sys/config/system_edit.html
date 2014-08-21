@@ -1,0 +1,25 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<a href="v_system_edit.do" class="on"><em><@s.m "config.menu.system"/></em></a>
+   		<span>|</span>
+   		<a href="v_login_edit.do" class=""><em><@s.m "config.menu.login"/></em></a>
+   		<span>|</span>
+   		<a href="v_member_edit.do" class=""><em><@s.m "config.menu.member"/></em></a>
+   		<span>|</span>
+   		<a href="v_mark_edit.do" class=""><em><@s.m "config.menu.mark"/></em></a>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_system_update.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="30" label="config.contextPath" name="contextPath" value=config.contextPath required="true" maxlength="50" help="config.contextPath.help"/>
+		<@p.text width="100" class="input-text" size="30" label="config.port" name="port" value=config.port required="true" maxlength="50" help="config.port.help"/>
+		<@p.text width="100" class="input-text" size="50" label="config.defaultImg" name="defaultImg" value=config.defaultImg required="true" maxlength="100" help="config.defaultImg.help"/>
+		<@p.radio width="100" label="config.isUploadToDb" name="isUploadToDb" value=config.isUploadToDb required="true" list={"true":"global.true","false":"global.false"}/>
+		<@p.text width="100" class="input-text" size="30" label="config.dbFileUri" name="dbFileUri" value=config.dbFileUri required="true" maxlength="50" help="config.dbFileUri.help"/>
+		<th></th><@p.td><@p.hidden name="id" value=config.id/><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<#if rootNode??>
+<h3 class="f14"><span class="J_switchs cu on" title="<@s.m "main.function.openORclose"/>"></span>常用功能</h3>
+<ul>
+   	<li class="sub_menu"><a href="javascript:;" data-uri="" data-id="1" hidefocus="true">常用功能定制</a></li>
+</ul>
+<#else>
+<#list firstNode as fn>
+<h3 class="f14"><span class="J_switchs cu on" title="<@s.m "main.function.openORclose"/>"></span>${fn.resouName}</h3>
+<ul>
+	<#list allNode as an>
+		<#if fn.id = an.parentId>
+    	<li class="sub_menu"><a href="javascript:;" data-uri="${an.modleName}/${an.actionName}.do?id=${an.id}" data-id="${an.id}" hidefocus="true">${an.resouName}</a></li>
+    	</#if>
+    </#list>
+</ul>
+</#list>
+</#if>

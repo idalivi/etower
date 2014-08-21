@@ -1,0 +1,27 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_list.do" class="add fb"><em><@s.m "global.backToList"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<@p.form id="jvForm" action="o_save.do" labelWidth="12">
+		<@p.text width="100" class="input-text" size="30" label="role.name" name="roleName" id="J_roleName" maxlength="100"/>
+		<@p.textarea width="100" label="role.remark" name="remark" id="J_remark" cols="40" rows="3" maxlength="255"/>
+		<@p.text width="100" class="input-text" size="20" label="role.priority" name="priority" id="J_priority" value="10" maxlength="10"/>
+		<@p.radio width="100" label="role.super" name="isSuper" value="false" list={"true":"global.true","false":"global.false"}/>
+		<th></th><@p.td><@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/></@p.td>
+	</@p.form>
+</div>
+<#include "/etower_sys/footer.html"/>
+<script type="text/javascript">
+$(function() {
+	$.formValidator.initConfig({formid:"jvForm",autotip:true});
+	$("#J_roleName").formValidator({onshow:'请填写FTP名称',onfocus:'请填写FTP名称'}).inputValidator({min:1,onerror:'请填写FTP名称'});
+	$("#J_remark").formValidator({onshow:'请填写服务器IP',onfocus:'请填写服务器IP'}).inputValidator({min:1,onerror:'请填写服务器IP'});
+});
+</script>
+</body>
+</html>

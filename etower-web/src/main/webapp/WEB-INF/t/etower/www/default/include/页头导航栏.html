@@ -1,0 +1,63 @@
+	  <!-- HEADER BEGIN -->
+        <header>
+            <div id="header">                
+            	<section class="bottom">
+                	<div class="inner">
+                    	<div id="logo_top"><a href="index.ehtml"><img src="${resSys}/images/logo_top.png" alt="牛起网" title="牛起网" /></a></div>
+                                               
+                        <div class="fr">
+	                        <div class="block_search_top">
+	                        	<form action="#">
+	                            	<div class="field"><input type="text" class="w_def_text" title="攻略/目的地/用户" /></div>
+	                                <input type="submit" class="button" value="Search" />
+	                            </form>
+	                        </div>
+	                        [#if user??]
+	                        <div class="block_top_user">
+	                        	<nav class="user_menu">
+	                       			<ul>
+	                       				<li><!-- <img src="${resSys}/images/icon_play_1.png" width="16px" height="16px"/> --><a href="index.html">admin<i></i></a>
+		                       				<ul>
+			                                   	<li><a href="index.html" class="user_home" title="我的主页">我的主页</a></li>
+			                                    <li><a href="home_style_2.html" class="user_edit" title="写游记">写游记</a></li>
+			                                    <li><a href="home_style_2.html" title="关注的好友">关注的好友</a></li>
+			                                    <li><a href="home_style_2.html" title="设置">设置</a></li>
+			                                    <li><a href="/logout.esp?returnUrl=/" title="退出登录">退出</a></li>
+		                                    </ul>
+	                                    </li>
+	                                </ul>
+                                </nav>
+	                        </div>
+	                        [#else]
+	                        <div class="block_top_menu">
+	                        	<ul>
+	                            	<li><a href="#login" class="open_popup innerbtn" title="登录">登录</a></li>
+	                                <li><a href="registration.html" class="innerbtn" title="注册账号">注册</a></li>
+	                                <li><a href="#" class="socialbtn" title="微博登录">微博登录</a></li>
+	                                <li><a href="#" class="socialbtn" title="QQ登录">QQ登录</a></li>
+	                            </ul>
+	                        </div>
+	                        [/#if]
+	                        <div class="clearboth"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section_main_menu">
+                	<div class="inner">
+                    	<nav class="main_menu">
+                        	<ul>
+								<li class="current_page_item"><a href="/index.ehtml">首页</a></li>
+							  	<li><a href="/guide/">旅游攻略</a></li>
+							  	<li><a href="/place/">目的地</a></li>
+							  	<li><a href="/bbs/">社区</a></li>
+							  	<li><a href="/ask/">问答</a> </li>
+							  	<li><a href="/lvimg/">旅图</a></li>
+							  	<li><a href="/helper/">旅游助手</a></li>
+						  	</ul>
+						</nav>
+                    </div>
+                </section>
+            </div>
+        </header>
+    	<!-- HEADER END -->

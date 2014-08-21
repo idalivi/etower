@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>ETOWER Administrator's Control Panel</title>
+	<link href="${base}/res/etower/css/admin.css" rel="stylesheet" />
+	<link href="${base}/res/common/css/jquery.validate.css" rel="stylesheet" />
+	<script src="${base}/res/common/js/jquery/jquery.js"></script>
+	<script src="${base}/res/common/js/jquery/plugins/jquery.validate.js"></script>
+	<script src="${base}/res/common/js/jquery/plugins/jquery.ext.js"></script>
+	<script type="text/javascript">
+		if (top != this) {
+			top.location = this.location;
+		}
+		$(function() {
+			$("#username").focus();
+			$("#jvForm").validate();
+		});
+	</script>
+</head>
+<body scroll="no" class="login_body">
+	<table class="login_table">
+		<tbody>
+			<tr>
+				<td class="logo">
+					<h1>EACP</h1>
+				</td>
+				<td class="loginform">
+					<form id="jvForm" action="login.do" method="post">
+						<#if returnUrl??><input type="hidden" name="returnUrl" value="${returnUrl}"/></#if>
+						<#if processUrl??><input type="hidden" name="processUrl" value="${processUrl}"/></#if>
+						<table>
+							<tr>
+								<th><@s.m "login.username"/>：</th>
+								<td><input class="text user" type="text" name="username" id="username" vld="{required:true}" /></td>
+							</tr>
+							<tr>
+								<th><@s.m "login.password"/>：</th>
+								<td><input class="text pass" type="password" name="password" id="password" vld="{required:true}" /></td>
+							</tr>
+							<#if errorRemaining?? && errorRemaining<=0>
+							<tr>
+								<th></th>
+								<td><img class="captcha_img" title="<@s.m "login.captach.title"/>" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" /></td>
+							</tr>
+							<tr>
+								<th><@s.m "login.captcha"/>：</th>
+								<td><input class="text captcha" type="text" name="captcha" id="captcha" vld="{required:true}" /></td>
+							</tr>
+							</#if>
+							<tr>
+								<th></th>
+								<td><input type="submit" name="submit" value="" class="login_btn" /></td>
+							</tr>
+						</table>
+						<#if errors??>
+							<ul>
+							<#list errors as error><li>${error}</li></#list>
+							</ul>
+						</#if>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<#include "/common/alert_message.html"/>
+</body>
+</html>

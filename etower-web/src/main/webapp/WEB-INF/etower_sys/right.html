@@ -1,0 +1,87 @@
+<#include "/etower_sys/head.html"/>
+<div class="pad_10">
+	<div class="clearfix">
+        <div class="col-2">
+            <h6>动态</h6>
+            <div class="content">
+                <iframe src="" style="width:100%;height:100px;" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="col-2 mt10">
+            <h6>系统信息</h6>
+            <div class="content">
+                <table class="table_panel lh26" style="width: 100%;">
+                    <tr>
+                        <td width="20%">您上次登录的时间是：</td>
+                        <td width="30%">${user.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                        <td width="20%">已用内存：</td>
+                        <td width="30%"><span style="color: #0078ff;">${(usedMemory/1024/1024)?string("0.##")}MB</span></td>
+                    </tr>
+                    <tr>
+                        <td>操作系统版本：</td>
+                        <td>${props['os.name']!} ${props['os.version']!}</td>
+                        <td>剩余内存：</td>
+                        <td><span style="color: #ff8400;">${(useableMemory/1024/1024)?string("0.##")}MB</span></td>
+                    </tr>
+                    <tr>
+                        <td>操作系统类型：</td>
+                        <td>${props['os.arch']!} ${props['sun.arch.data.model']!}位</td>
+                        <td>最大内存：</td>
+                        <td><span style="color: #00ac41;">${(maxMemory/1024/1024)?string("0.##")}MB</span></td>
+                    </tr>
+                    <tr>
+                        <td>用户：</td>
+                        <td colspan="3">${props['user.name']!}</td>
+                    </tr>
+                    <tr>
+                        <td>目录：</td>
+                        <td colspan="3">${props['user.dir']!}</td>
+                    </tr>
+                    <tr>
+                        <td>临时目录：</td>
+                        <td colspan="3">${props['java.io.tmpdir']!}</td>
+                    </tr>
+                    <tr>
+                        <td>JAVA运行环境：</td>
+                        <td colspan="3">${props['java.runtime.name']!} ${props['java.runtime.version']!}</td>
+                    </tr>
+                    <tr>
+                        <td>JAVA虚拟机：</td>
+                        <td colspan="3">${props['java.vm.name']!} ${props['java.vm.version']!}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="col-2 mt10">
+            <h6>开发团队</h6>
+            <div class="content">
+                <table class="table_panel lh26" style="width: 100%;">
+                    <tr>
+                        <td width="10%">版权所有：</td>
+                        <td>www.pinphp.com</td>
+                    </tr>
+                    <tr>
+                        <td>负责人：</td>
+                        <td>李谱(leaper)</td>
+                    </tr>
+                    <tr>
+                        <td>产品研发：</td>
+                        <td>李长勇(andery)、李苏亮(solaa)、胡怀行(湖水清)、王世豪(brivio)</td>
+                    </tr>
+                    <tr>
+                        <td>UED：</td>
+                        <td>陈勇(Mr)、李长勇(andery)</td>
+                    </tr>
+                    <tr>
+                        <td>市场运营：</td>
+                        <td>许华平(jonyxu)</td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<#include "/etower_sys/head.html"/>
+<div class="subnav">
+    <div class="content_menu ib_a blue line_x">
+    	<form>
+    		<a href="v_add.do" class="add fb"><em><@s.m "global.add"/></em></a>
+    	</form>
+    </div>
+</div>
+<div class="pad_lr_10">
+	<div class="J_tablelist table_list">
+		<form id="tableForm" method="post">
+			<input type="hidden" name="pageNo" value="${pageNo!}"/>
+			<@p.table value=pagination;ftp,i,has_next><#rt/>
+				<@p.column title="<input type='checkbox' name='checkall' class='J_checkall' />" width="40" align="center">
+					<input type='checkbox' name='ids' class='J_checkitem' value='${ftp.id}'/><#t/>
+				</@p.column><#t/>
+				<@p.column title="ID" align="center">${ftp.id}</@p.column><#t/>
+				<@p.column code="ftp.ftpName" align="center">${ftp.ftpName}</@p.column><#t/>
+				<@p.column code="ftp.ip" align="center">${ftp.ip}</@p.column><#t/>
+				<@p.column code="ftp.ftpPath" align="center">${ftp.ftpPath}</@p.column><#t/>
+				<@p.column code="ftp.url" align="center">${ftp.url}</@p.column><#t/>
+				<@p.column code="global.operate" align="center">
+					<a href="v_edit.do?id=${ftp.id}&pageNo=${pageNo!}"><@s.m "global.edit"/></a> | <#rt/>
+					<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${ftp.id}&pageNo=${pageNo!}" data-msg="<@s.m "global.confirm.delete.one.1"/>${ftp.ftpName}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
+				</@p.column><#t/>
+			</@p.table>
+		</form>
+	</div>
+</div>
+<#include "/etower_sys/footer.html"/>
+</body>
+</html>
