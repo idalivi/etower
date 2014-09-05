@@ -19,7 +19,7 @@ public class EtModelItem extends IdEntity {
 
 	private String field;
 	private String itemLabel;
-	private int priority;
+	private Integer priority;
 	private String defValue;
 	private String optValue;
 	private String textSize;
@@ -55,11 +55,11 @@ public class EtModelItem extends IdEntity {
 		this.itemLabel = itemLabel;
 	}
 
-	public int getPriority() {
+	public Integer getPriority() {
 		return priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
 
@@ -167,6 +167,21 @@ public class EtModelItem extends IdEntity {
 
 	public void setEtModel(EtModel etModel) {
 		this.etModel = etModel;
+	}
+	
+	public void init() {
+		if (getPriority() == null) {
+			setPriority(10);
+		}
+		if (getIsSingle() == (Boolean)null) {
+			setIsSingle(true);
+		}
+		if (getIsCustom() == (Boolean)null) {
+			setIsCustom(true);
+		}
+		if (getIsDisplay() == (Boolean)null) {
+			setIsDisplay(true);
+		}
 	}
 
 }
