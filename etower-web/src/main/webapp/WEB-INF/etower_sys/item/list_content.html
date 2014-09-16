@@ -62,7 +62,7 @@ function disInput(o) {
 	<th width="40"><input type='checkbox' name='checkall' class='J_checkall' /></th>
 	<th><@s.m "modelItem.field"/></th>
 	<th><@s.m "modelItem.dataType"/></th>
-	<th><@s.m "modelItem.label"/></th>
+	<th><@s.m "modelItem.itemLabel"/></th>
 	<th><@s.m "modelItem.priority"/></th>
 	<th><@s.m "modelItem.single"/></th>
 	<th><@s.m "modelItem.display"/></th>
@@ -90,7 +90,7 @@ function disInput(o) {
 	</td>
 	<td align="center">
 		<a href="v_edit.do?id=${item.id}" class="pn-opt"><@s.m "global.edit"/></a> |
-		<a href="o_delete.do?ids=${item.id}&modelId=${modelId}&isChannel=${isChannel?string('true','false')}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a>
+		<a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="o_delete.do?ids=${item.id}&modelId=${modelId}&isChannel=${isChannel?string('true','false')}" data-msg="<@s.m "global.confirm.delete.one.1"/>${item.field}<@s.m "global.confirm.delete.one.2"/>"><@s.m "global.delete"/></a><#t/>
  	</td>
 </tr>
 </#list>

@@ -7,32 +7,32 @@
 	</div>
 </div>
 <div class="pad_lr_10">
-	<#assign custom=etModelItem.isCustom/>
-	<#assign type=etModelItem.dataType/>
-	<@p.form id="jvForm" action="o_save.do" labelWidth="12">
+	<#assign custom=modelItem.isCustom/>
+	<#assign type=modelItem.dataType/>
+	<@p.form id="jvForm" action="o_update.do" labelWidth="12">
 		<#if custom>
-			<@p.text width="100" class="input-text" size="30" label="modelItem.field" name="field" value=etModelItem.field id="J_field" maxlength="50"/>
+			<@p.text width="100" class="input-text" size="30" label="modelItem.field" name="field" value=modelItem.field id="J_field" maxlength="50"/>
 		<#else>
-			<@p.td label="modelItem.field">${etModelItem.field}</@p.td><@p.tr/>
+			<@p.td label="modelItem.field">${modelItem.field}</@p.td><@p.tr/>
 		</#if>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.label" name="label" value=etModelItem.itemLabel id="J_label" maxlength="100"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.help" name="help" value=etModelItem.help maxlength="255"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.helpPosition" name="helpPosition" value=etModelItem.helpPosition maxlength="1" help="modelItem.helpPosition.help"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.itemLabel" name="itemLabel" value=modelItem.itemLabel id="J_itemLabel" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.help" name="help" value=modelItem.help maxlength="255"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.helpPosition" name="helpPosition" value=modelItem.helpPosition maxlength="1" help="modelItem.helpPosition.help"/>
 		<#if !custom>
-			<@p.td label="modelItem.dataType"><@s.m "modelItem.type${etModelItem.dataType}"/></@p.td><@p.tr/>
+			<@p.td label="modelItem.dataType"><@s.m "modelItem.type${modelItem.dataType}"/></@p.td><@p.tr/>
 			<#if type==1 || type==2 || type==3>
-				<@p.text width="100" class="input-text" size="30" label="modelItem.defValue" name="defValue" value=etModelItem.defValue! maxlength="255"/>
-				<@p.text width="100" class="input-text" size="30" label="modelItem.size" name="size" value=etModelItem.size! maxlength="10"/>
+				<@p.text width="100" class="input-text" size="30" label="modelItem.defValue" name="defValue" value=modelItem.defValue! maxlength="255"/>
+				<@p.text width="100" class="input-text" size="30" label="modelItem.textSize" name="textSize" value=modelItem.textSize! maxlength="10"/>
 			<#elseif type==4>
-				<@p.text width="100" class="input-text" size="30" label="modelItem.defValue" name="defValue" value=etModelItem.defValue! maxlength="255"/>
-				<@p.text width="100" class="input-text" size="30" label="modelItem.rows" name="rows" value=etModelItem.rows! maxlength="3"/>
-				<@p.text width="100" class="input-text" size="30" label="modelItem.cols" name="cols" value=etModelItem.cols! maxlength="3"/>
+				<@p.text width="100" class="input-text" size="30" label="modelItem.defValue" name="defValue" value=modelItem.defValue! maxlength="255"/>
+				<@p.text width="100" class="input-text" size="30" label="modelItem.areaRows" name="areaRows" value=modelItem.areaRows! maxlength="3"/>
+				<@p.text width="100" class="input-text" size="30" label="modelItem.areaCols" name="areaCols" value=modelItem.areaCols! maxlength="3"/>
 			</#if>
 		<#else>
-			<@p.select colspan="1" width="50" label="modelItem.dataType" name="dataType" value=etModelItem.dataType list={"1":"modelItem.type1","2":"modelItem.type2","3":"modelItem.type3","4":"modelItem.type4","5":"modelItem.type5","6":"modelItem.type6","7":"modelItem.type7","8":"modelItem.type8"}/><@p.tr/>
+			<@p.select colspan="1" width="50" label="modelItem.dataType" name="dataType" value=modelItem.dataType list={"1":"modelItem.type1","2":"modelItem.type2","3":"modelItem.type3","4":"modelItem.type4","5":"modelItem.type5","6":"modelItem.type6","7":"modelItem.type7","8":"modelItem.type8"}/><@p.tr/>
 		</#if>
 		<th></th><@p.td>
-			<@p.hidden name="id" value=etModelItem.id/>
+			<@p.hidden name="id" value=modelItem.id/>
 			<@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/>
 		</@p.td>
 	</@p.form>
@@ -42,7 +42,7 @@
 $(function() {
 	$.formValidator.initConfig({formid:"jvForm",autotip:true});
 	$("#J_field").formValidator({onshow:'请填写字段',onfocus:'请填写字段'}).inputValidator({min:1,onerror:'请填写字段'});
-	$("#J_label").formValidator({onshow:'请填写名称',onfocus:'请填写名称'}).inputValidator({min:1,onerror:'请填写名称'});
+	$("#J_itemLabel").formValidator({onshow:'请填写名称',onfocus:'请填写名称'}).inputValidator({min:1,onerror:'请填写名称'});
 	$("#J_priority").formValidator({onshow:'请填写排列顺序',onfocus:'请填写排列顺序'}).inputValidator({min:1,onerror:'请填写排列顺序'});
 });
 </script>

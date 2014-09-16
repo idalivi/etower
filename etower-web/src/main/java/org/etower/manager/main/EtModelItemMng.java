@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class EtModelItemMng {
 
 	private EtModelItemDao etModelItemDao;
+	
+	@Autowired
+	private EtModelMng etModelMng;
 
 	@Autowired
 	public void setEtModelItemDao(EtModelItemDao etModelItemDao) {
@@ -26,6 +29,16 @@ public class EtModelItemMng {
 	public EtModelItem findById(Long id) {
 		EtModelItem entity = etModelItemDao.findOne(id);
 		return entity;
+	}
+	
+	@Transactional(readOnly = false)
+	public EtModelItem save(EtModelItem bean, Long modelId) {
+		bean.setEtModel(etModelMng.findById(modelId));
+		bean.setIsCustom(true);
+		bean.setIsDisplay(true);
+		bean.setIsSingle(true);
+		etModelItemDao.save(bean);
+		return bean;
 	}
 	
 	@Transactional(readOnly = false)
@@ -57,7 +70,6 @@ public class EtModelItemMng {
 	
 	@Transactional(readOnly = false)
 	public EtModelItem update(EtModelItem bean) {
-		bean.init();
 		etModelItemDao.save(bean);
 		return bean;
 	}

@@ -173,15 +173,6 @@ public class EtModelItem extends IdEntity {
 		if (getPriority() == null) {
 			setPriority(10);
 		}
-		if (getIsSingle() == (Boolean)null) {
-			setIsSingle(true);
-		}
-		if (getIsCustom() == (Boolean)null) {
-			setIsCustom(true);
-		}
-		if (getIsDisplay() == (Boolean)null) {
-			setIsDisplay(true);
-		}
 	}
 
 }

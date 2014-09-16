@@ -68,7 +68,7 @@ public class EtModelItemAct {
 		if (errors.hasErrors()) {
 			return errors.showErrorPage(model);
 		}
-		model.addAttribute("etModelItem", etModelItemMng.findById(id));
+		model.addAttribute("modelItem", etModelItemMng.findById(id));
 		return "item/edit";
 	}
 	
@@ -105,8 +105,8 @@ public class EtModelItemAct {
 		if (errors.hasErrors()) {
 			return errors.showErrorPage(model);
 		}
-		bean = etModelItemMng.save(bean);
-		log.info("update CmsModelItem id={}.", bean.getId());
+		bean = etModelItemMng.save(bean, modelId);
+		log.info("save EtModelItem id={}.", bean.getId());
 		model.addAttribute("modelId", bean.getEtModel().getId());
 		model.addAttribute("isChannel", bean.getIsChannel());
 		return "redirect:v_list.do";
@@ -181,7 +181,6 @@ public class EtModelItemAct {
 		return list;
 	}
 	
-	@SuppressWarnings("unused")
 	private WebErrors validateSave(EtModelItem bean, Long modelId,
 			HttpServletRequest request) {
 		WebErrors errors = WebErrors.create(request);
@@ -233,7 +232,7 @@ public class EtModelItemAct {
 
 	private String replaceLocaleSplit(String s, HttpServletRequest request) {
 		String split = MessageResolver.getMessage(request,
-				"etModelItem.optValue.split");
+				"modelItem.optValue.split");
 		return StringUtils.replace(s, split, ",");
 	}
 }

@@ -11,19 +11,19 @@
 <div class="pad_lr_10">
 	<@p.form id="jvForm" action="o_save.do" labelWidth="12">
 		<@p.text width="100" class="input-text" size="30" label="modelItem.field" name="field" id="J_field" maxlength="50"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.label" name="label" id="J_label" maxlength="100"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.itemLabel" name="itemLabel" id="J_itemLabel" maxlength="100"/>
 		<@p.select width="100" label="modelItem.dataType" name="dataType" list={"1":"modelItem.type1","2":"modelItem.type2","3":"modelItem.type3","4":"modelItem.type4","5":"modelItem.type5","6":"modelItem.type6","7":"modelItem.type7","8":"modelItem.type8"}/>
 		<@p.text width="100" class="input-text" size="30" label="modelItem.priority" name="priority" value="70" id="J_priority" maxlength="10"/>
 		<@p.text width="100" class="input-text" size="30" label="modelItem.help" name="help" maxlength="255"/>
 		<@p.text width="100" class="input-text" size="30" label="modelItem.helpPosition" name="helpPosition" maxlength="10" help="modelItem.helpPosition.help"/>
 		<@p.text width="100" class="input-text" size="30" label="modelItem.defValue" name="defValue" maxlength="255"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.size" name="size" maxlength="10"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.textSize" name="textSize" maxlength="10"/>
 		<@p.text width="100" class="input-text" size="70" label="modelItem.optValue" name="optValue" maxlength="255" help="modelItem.optValue.help"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.rows" name="rows" value="3" maxlength="3"/>
-		<@p.text width="100" class="input-text" size="30" label="modelItem.cols" name="cols" value="30" maxlength="3"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.areaRows" name="areaRows" value="3" maxlength="3"/>
+		<@p.text width="100" class="input-text" size="30" label="modelItem.areaCols" name="areaCols" value="30" maxlength="3"/>
 		<th></th><@p.td>
 			<input type="hidden" name="modelId" value="${modelId}"/>
-			<input type="hidden" name="channel" value="${isChannel?string("true","false")}"/>
+			<input type="hidden" name="isChannel" value="${isChannel?string("true","false")}"/>
 			<@p.submit code="global.submit" class="btn btn_submit mr10"/> &nbsp; <@p.reset code="global.reset" class="btn"/>
 		</@p.td>
 	</@p.form>
@@ -33,7 +33,7 @@
 $(function() {
 	$.formValidator.initConfig({formid:"jvForm",autotip:true});
 	$("#J_field").formValidator({onshow:'请填写字段',onfocus:'请填写字段'}).inputValidator({min:1,onerror:'请填写字段'});
-	$("#J_label").formValidator({onshow:'请填写名称',onfocus:'请填写名称'}).inputValidator({min:1,onerror:'请填写名称'});
+	$("#J_itemLabel").formValidator({onshow:'请填写名称',onfocus:'请填写名称'}).inputValidator({min:1,onerror:'请填写名称'});
 	$("#J_priority").formValidator({onshow:'请填写排列顺序',onfocus:'请填写排列顺序'}).inputValidator({min:1,onerror:'请填写排列顺序'});
 });
 </script>
