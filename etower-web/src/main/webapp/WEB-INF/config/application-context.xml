@@ -48,6 +48,8 @@
 		<property name="packagesToScan" value="org.etower.core.domain"/>
 		<property name="jpaProperties">
 			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
 				<prop key="net.sf.ehcache.configurationResourceName">ehcache-hibernate.xml</prop>
 				<!-- 命名规则 My_NAME->MyName -->
